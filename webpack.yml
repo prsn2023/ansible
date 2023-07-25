@@ -1,0 +1,40 @@
+---
+- name: Enable web server
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Installing latest version all required packages
+      yum:
+        name: 
+          - httpd
+          - firewalld
+          - mariadb-server
+          - php
+          - php-mysqlnd
+        state: latest
+        
+    - name: Test html page
+      copy: 
+        content: This web server mangaed by ansible
+        dest: /var/www/html/index.html
+        
+    - name: service start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: httpd enable service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: started and Enabled mariadb server
+      service:
+        name: mariadb
+        state: started
+        enabled: true
+        
+    - name: test web page
+      shell: curl http://rhel
+        
+...
