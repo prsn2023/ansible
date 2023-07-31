@@ -1,0 +1,13 @@
+---
+- name: simple loop
+  hosts: localhost
+  tasks:
+    -  name: Install packages using a loop
+       yum:
+         name: "{{ item }}"
+         state: latest
+       loop:
+          - httpd
+          - autofs
+...          
+    
