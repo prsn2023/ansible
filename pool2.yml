@@ -1,1 +1,11 @@
-----
+---
+- name: pool2  example
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install  apache webserver
+      yum:
+        name: httpd
+        state: latest
+        
+      
